@@ -29,5 +29,19 @@ namespace MediatRExample.Controllers
             var response = await mediator.Send(command);
             return Ok(response);
         }
+        [HttpGet("2/{Id}")]
+        public async Task<IActionResult> Index2(int Id)
+        {
+            var request = new GetProductById.Query(Id);
+            var response = await mediator.Send(request);
+            return Ok(response);
+        }
+
+        [HttpPost("2")]
+        public async Task<IActionResult> Index2([FromBody] CreateProduct.Command command)
+        {
+            var response = await mediator.Send(command);
+            return Ok(response);
+        }
     }
 }
